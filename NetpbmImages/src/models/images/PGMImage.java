@@ -1,8 +1,8 @@
-package models;
+package models.images;
 
 import java.awt.image.BufferedImage;
 
-public class PGMImage extends Image{
+public class PGMImage extends Image {
     public PGMImage(){
         this.imageType = BufferedImage.TYPE_BYTE_GRAY;
     }

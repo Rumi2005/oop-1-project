@@ -1,4 +1,4 @@
-package models;
+package models.images;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class PPMImage extends Image{
+public class PPMImage extends Image {
     public PPMImage(){
         this.imageType = BufferedImage.TYPE_INT_RGB;
     }

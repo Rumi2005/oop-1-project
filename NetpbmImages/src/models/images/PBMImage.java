@@ -1,8 +1,8 @@
-package models;
+package models.images;
 
 import java.awt.image.BufferedImage;
 
-public class PBMImage extends Image{
+public class PBMImage extends Image {
     public PBMImage(){
         setImageType(BufferedImage.TYPE_BYTE_BINARY);
     }
