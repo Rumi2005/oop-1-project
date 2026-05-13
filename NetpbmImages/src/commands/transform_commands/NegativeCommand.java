@@ -25,6 +25,7 @@ public class NegativeCommand implements Command, Transformation {
             images.set(i, transformed);
             modified++;
         }
+        session.addTransformation("monochrome");
         return modified + " image(s) converted.";
     }
 

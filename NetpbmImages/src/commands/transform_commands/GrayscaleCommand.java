@@ -27,6 +27,7 @@ public class GrayscaleCommand implements Command,Transformation {
                 modified++;
             }
         }
+        session.addTransformation("grayscale");
         return modified + " image(s) converted.";
     }
 

@@ -33,6 +33,7 @@ public class RotateCommand implements Command, Transformation {
 
         List<Image> images = session.getImages();
         images.replaceAll(this::transform);
+        session.addTransformation(rotateRight ? "rotate right" : "rotate left");
         return "Rotated " + images.size() + " image(s).";
     }
 

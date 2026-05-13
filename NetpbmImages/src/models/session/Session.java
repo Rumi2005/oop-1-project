@@ -9,10 +9,16 @@ public class Session {
     private static int nextId = 1;
     private int id;
     private List<Image> images;
-    public Session(Image image){
+    private final List<String> fileNames;
+    private final List<String> pendingTransformations;
+
+    public Session(Image image, String fileName){
         this.id = nextId++;
-        images = new ArrayList<>();
+        this.images = new ArrayList<>();
+        this.fileNames = new ArrayList<>();
+        this.pendingTransformations = new ArrayList<>();
         images.add(image);
+        fileNames.add(fileName);
     }
 
     public int getId() {
@@ -23,7 +29,25 @@ public class Session {
         return images;
     }
 
-    public void addImage(Image image){
+    public List<String> getFileNames() {
+        return fileNames;
+    }
+
+    public List<String> getPendingTransformations() {
+        return pendingTransformations;
+    }
+
+    public void addImage(Image image, String fileName) {
         images.add(image);
+        fileNames.add(fileName);
+    }
+
+    public void addTransformation(String transformation) {
+        pendingTransformations.add(transformation);
+    }
+
+    public void undoTransformation() {
+        if (!pendingTransformations.isEmpty())
+            pendingTransformations.remove(pendingTransformations.size() - 1);
     }
 }

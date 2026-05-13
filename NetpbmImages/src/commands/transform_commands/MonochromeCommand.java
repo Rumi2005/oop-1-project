@@ -5,11 +5,29 @@ import models.images.Image;
 import models.images.PBMImage;
 import models.images.PGMImage;
 import models.images.PPMImage;
+import models.session.Session;
+import models.session.SessionManager;
+
+import java.util.List;
 
 public class MonochromeCommand implements Command, Transformation {
     @Override
     public String execute() {
-        return "";
+        Session session = SessionManager.getCurrentSession();
+        if (session == null)
+            return "No active session.";
+        List<Image> images = session.getImages();
+        int modified = 0;
+        for (int i = 0; i < images.size(); i++) {
+            Image original = images.get(i);
+            Image transformed = transform(original);
+            if (transformed != original) {
+                images.set(i, transformed);
+                modified++;
+            }
+        }
+        session.addTransformation("monochrome");
+        return modified + " image(s) converted.";
     }
 
     @Override
