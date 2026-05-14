@@ -27,6 +27,6 @@ public class HelpCommand implements Command {
     }
 
     private String formatCommand(String syntax, String description) {
-        return String.format("%-45s %s%n", syntax, description);
+        return String.format("%-55s %s%n", syntax, description);
     }
 }

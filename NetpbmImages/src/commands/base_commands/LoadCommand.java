@@ -24,9 +24,7 @@ public class LoadCommand implements Command {
             return "Session with ID: " + session.getId() + " started\nImage '" + path + "' added";
 
         } catch (IOException e) {
-
-            return "Failed to load image: "
-                    + e.getMessage();
+            return "Failed to load image: " + e.getMessage();
         }
     }
 }

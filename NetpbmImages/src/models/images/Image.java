@@ -1,8 +1,6 @@
 package models.images;
 
 import java.awt.image.BufferedImage;
-import java.util.Map;
-import java.util.TreeMap;
 
 public abstract class Image {
     protected int imageType;
@@ -10,6 +8,14 @@ public abstract class Image {
     protected int height;
     protected int maxVal;
     protected int[] data;
+
+    public abstract Image createEmpty();
+
+    public abstract int getChannels();
+
+    public abstract boolean isColored();
+
+    public abstract boolean isMonochrome();
 
     public int getImageType() {
         return imageType;
@@ -57,15 +63,7 @@ public abstract class Image {
         return output;
     }
 
-    public Map<Integer, Integer> getMap(){
-        Map<Integer, Integer> output = new TreeMap<>();
-        for(int x = 0; x < getMaxVal(); x++){
-            int y = 0;
-            for(int i = 0; i < getData().length; i++)
-                if(getData()[i] == x)
-                    y++;
-            output.put(x,y);
-        }
-        return output;
+    public boolean sameFormat(Image other) {
+        return getClass().equals(other.getClass());
     }
 }

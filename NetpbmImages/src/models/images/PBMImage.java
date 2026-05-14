@@ -16,4 +16,24 @@ public class PBMImage extends Image {
         this.setData(original);
         return image;
     }
+
+    @Override
+    public Image createEmpty() {
+        return new PBMImage();
+    }
+
+    @Override
+    public int getChannels() {
+        return 1;
+    }
+
+    @Override
+    public boolean isColored() {
+        return false;
+    }
+
+    @Override
+    public boolean isMonochrome() {
+        return true;
+    }
 }

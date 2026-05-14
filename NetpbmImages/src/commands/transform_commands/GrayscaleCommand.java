@@ -2,8 +2,6 @@ package commands.transform_commands;
 
 import commands.Command;
 import models.images.Image;
-import models.images.PBMImage;
-import models.images.PGMImage;
 import models.images.PPMImage;
 import models.session.Session;
 import models.session.SessionManager;
@@ -18,25 +16,21 @@ public class GrayscaleCommand implements Command,Transformation {
             return "No active session.";
         }
         List<Image> images = session.getImages();
-        int modified = 0;
         for (int i = 0; i < images.size(); i++) {
             Image original = images.get(i);
             Image transformed = transform(original);
-            if (transformed != original) {
+            if (transformed != original)
                 images.set(i, transformed);
-                modified++;
-            }
         }
         session.addTransformation("grayscale");
-        return modified + " image(s) converted.";
+        return "";
     }
 
     @Override
     public Image transform(Image image) {
-        if (image instanceof PBMImage || image instanceof PGMImage)
+        if (!image.isColored()) {
             return image;
-        if (!(image instanceof PPMImage))
-            return image;
+        }
 
         PPMImage original = (PPMImage) image;
         int[] data = original.getData();

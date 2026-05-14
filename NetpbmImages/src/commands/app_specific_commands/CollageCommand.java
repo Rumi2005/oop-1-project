@@ -2,9 +2,6 @@ package commands.app_specific_commands;
 
 import commands.Command;
 import models.images.Image;
-import models.images.PBMImage;
-import models.images.PGMImage;
-import models.images.PPMImage;
 import models.session.Session;
 import models.session.SessionManager;
 
@@ -38,12 +35,8 @@ public class CollageCommand implements Command {
 
         Image image1 = images.get(index1);
         Image image2 = images.get(index2);
-        if (!image1.getClass().equals(image2.getClass()))
-            return "Cannot make a collage from different types! (." + image1.getClass().getName() + " and ." + image2.getClass().getName() + ")";
-        if (image1.getWidth() != image2.getWidth() || image1.getHeight() != image2.getHeight())
-            return "Cannot make a collage from different dimensions.";
-        if (!direction.equals("horizontal") && direction.equals("vertical"))
-            return "Direction must be 'horizontal' or 'vertical'.";
+        if (!image1.sameFormat(image2))
+            return "Images must have the same format.";
         Image result = createCollage(image1, image2);
         session.addImage(result, outputImage);
         return "New collage: '" + outputImage + "' created";
@@ -52,24 +45,16 @@ public class CollageCommand implements Command {
     private Image createCollage(Image image1, Image image2) {
         int width = image1.getWidth();
         int height = image1.getHeight();
-        int channels = (image1 instanceof PPMImage) ? 3 : 1;
+        int channels = image1.getChannels();
         int newWidth = direction.equals("horizontal") ? width * 2 : width;
         int newHeight = direction.equals("vertical") ? height * 2 : height;
         int[] data = new int[newWidth * newHeight * channels];
-        copyImage(image1.getData(), data, width, height, newWidth, channels, 0, 0);
 
+        copyImage(image1.getData(), data, width, height, newWidth, channels, 0, 0);
         int offsetX = direction.equals("horizontal") ? width : 0;
         int offsetY = direction.equals("vertical") ? height : 0;
-
         copyImage(image2.getData(), data, width, height, newWidth, channels, offsetX, offsetY);
-        Image result;
-        if(image1 instanceof PBMImage)
-            result = new PBMImage();
-        else if(image1 instanceof PGMImage)
-            result = new PGMImage();
-        else
-            result = new PPMImage();
-
+        Image result = image1.createEmpty();
         result.setWidth(newWidth);
         result.setHeight(newHeight);
         result.setMaxVal(image1.getMaxVal());

@@ -16,10 +16,6 @@ public class SessionManager {
         sessions.put(session.getId(), session);
     }
 
-    public static Session getSession(int id) {
-        return sessions.get(id);
-    }
-
     public static boolean hasSession() {
         return currentSession != null;
     }

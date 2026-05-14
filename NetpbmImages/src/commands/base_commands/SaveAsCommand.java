@@ -12,9 +12,7 @@ import java.util.List;
 public class SaveAsCommand implements Command {
     private final String newFileName;
     public SaveAsCommand(String newFileName) {
-
-        this.newFileName =
-                newFileName;
+        this.newFileName = newFileName;
     }
 
     @Override
