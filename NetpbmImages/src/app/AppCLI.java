@@ -31,7 +31,7 @@ public class AppCLI {
                 String key = getCommandKey(parts);
                 Function<String[], Command> factory = commands.get(key);
                 if (factory == null) {
-                    System.out.println("Unknown " + "command.");
+                    System.out.println("Unknown " + "command. Type 'help' to get list of commands");
                     continue;
                 }
                 Command command = factory.apply(parts);

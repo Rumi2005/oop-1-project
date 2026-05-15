@@ -11,14 +11,14 @@ public class RotateCommand implements Command, Transformation {
     private boolean rotateRight;
     public RotateCommand(String direction) {
         if(direction == null)
-            throw new IllegalArgumentException("Direction cannot be null");
+            throw new IllegalArgumentException("Set direction to 'left' of 'right'");
         direction = direction.toLowerCase();
         if(direction.equals("right"))
             rotateRight = true;
         else if(direction.equals("left"))
             rotateRight = false;
         else
-            throw new IllegalArgumentException("Direction must be 'left' or 'right'");
+            throw new IllegalArgumentException("Set direction to 'left' of 'right'");
     }
 
     @Override

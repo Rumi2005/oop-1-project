@@ -31,12 +31,12 @@ public class CollageCommand implements Command {
         int index1 = names.indexOf(firstImage);
         int index2 = names.indexOf(secondImage);
         if (index1 == -1 || index2 == -1)
-            return "One or both images not found.";
+            return "One or both images aren't found.";
 
         Image image1 = images.get(index1);
         Image image2 = images.get(index2);
         if (!image1.sameFormat(image2))
-            return "Images must have the same format.";
+            return "Images need to be the same format.";
         Image result = createCollage(image1, image2);
         session.addImage(result, outputImage);
         return "New collage: '" + outputImage + "' created";
