@@ -9,7 +9,14 @@ import models.session.SessionManager;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Записва текущото изображение.
+ * Съхранява промените във файла.
+ */
 public class SaveCommand implements Command {
+    /**
+     * Записва текущите промени.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();

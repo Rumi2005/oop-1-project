@@ -6,8 +6,14 @@ import models.session.Session;
 import models.session.SessionManager;
 
 import java.util.List;
-
+/**
+ * Прилага негативен ефект върху изображението.
+ * Обръща цветовите стойности.
+ */
 public class NegativeCommand implements Command, Transformation {
+    /**
+     * Прилага негативен филтър.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();
@@ -20,6 +26,10 @@ public class NegativeCommand implements Command, Transformation {
         return "";
     }
 
+    /**
+     * Създава негатив.
+     * @param image изображението, което ще бъде направено в негатив
+     */
     @Override
     public Image transform(Image image) {
         int[] originalData = image.getData();

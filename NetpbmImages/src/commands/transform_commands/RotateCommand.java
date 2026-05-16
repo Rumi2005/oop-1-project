@@ -7,8 +7,21 @@ import models.session.SessionManager;
 
 import java.util.List;
 
+/**
+ * Завърта изображението в определена посока.
+ * Поддържа ротация наляво или надясно.
+ */
 public class RotateCommand implements Command, Transformation {
+    /**
+     * Посоката на завъртане.
+     */
     private boolean rotateRight;
+
+    /**
+     * Създава команда за завъртане.
+     *
+     * @param direction посока на ротация
+     */
     public RotateCommand(String direction) {
         if(direction == null)
             throw new IllegalArgumentException("Set direction to 'left' of 'right'");
@@ -21,6 +34,9 @@ public class RotateCommand implements Command, Transformation {
             throw new IllegalArgumentException("Set direction to 'left' of 'right'");
     }
 
+    /**
+     * Извършва завъртане на изображението.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();

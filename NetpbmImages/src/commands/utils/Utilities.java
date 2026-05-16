@@ -15,10 +15,25 @@ import java.util.Map;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Помощен клас за зареждане и обработка на изображения.
+ * Съдържа статични методи и фабрики за работа с формати и трансформации.
+ */
 public class Utilities {
+    /**
+     * Забранява създаването на инстанции на класа.
+     */
     private Utilities() {}
 
+    /**
+     * Съхранява loaders за различните формати изображения.
+     */
     public static final Map<String, ImageLoader> loaders = createLoaders();
+
+    /**
+     * Създава map с loaders за поддържаните формати.
+     * @return map с loaders
+     */
     private static Map<String, ImageLoader> createLoaders() {
         Map<String, ImageLoader> map = new HashMap<>();
         map.put("P1", (is, width, height, maxVal)
@@ -28,10 +43,16 @@ public class Utilities {
         return map;
     }
 
+    /**
+     * Съдържа фабрики за създаване на изображения.
+     */
     public static final Map<String, Supplier<Image>> imageFactory = createImageFactories();
 
-    private static
-    Map<String, Supplier<Image>> createImageFactories() {
+    /**
+     * Създава фабрики за различните типове изображения.
+     * @return map с image factories
+     */
+    private static Map<String, Supplier<Image>> createImageFactories() {
         Map<String, Supplier<Image>> map = new HashMap<>();
         map.put("P1", PBMImage::new);
         map.put("P2", PGMImage::new);
@@ -39,6 +60,13 @@ public class Utilities {
         return map;
     }
 
+    /**
+     * Зарежда изображение от файл.
+     *
+     * @param path пътят до файла
+     * @return зареденото изображение
+     * @throws IOException при грешка при четене
+     */
     public static Image load(String path) throws IOException {
         try (InputStream is = new BufferedInputStream(Files.newInputStream(Paths.get(path)))) {
             String magic = readToken(is);
@@ -64,6 +92,15 @@ public class Utilities {
         }
     }
 
+    /**
+     * Зарежда PBM изображение от поток.
+     *
+     * @param is входният поток
+     * @param width ширината на изображението
+     * @param height височината на изображението
+     * @return масив с пикселни данни
+     * @throws IOException при грешка при четене
+     */
     private static int[] loadPBM(InputStream is, int width, int height) throws IOException {
         int[] data = new int[width * height];
         for (int i = 0; i < data.length; i++)
@@ -71,6 +108,16 @@ public class Utilities {
         return data;
     }
 
+    /**
+     * Зарежда PGM изображение от поток.
+     *
+     * @param is входният поток
+     * @param width ширината на изображението
+     * @param height височината на изображението
+     * @param maxVal максималната стойност на пиксел
+     * @return масив с пикселни данни
+     * @throws IOException при грешка при четене
+     */
     private static int[] loadPGM(InputStream is, int width, int height, int maxVal) throws IOException {
         int[] data = new int[width * height];
         for (int i = 0; i < data.length; i++)
@@ -78,6 +125,16 @@ public class Utilities {
         return data;
     }
 
+    /**
+     * Зарежда PPM изображение от поток.
+     *
+     * @param is входният поток
+     * @param width ширината на изображението
+     * @param height височината на изображението
+     * @param maxVal максималната стойност на пиксел
+     * @return масив с пикселни данни
+     * @throws IOException при грешка при четене
+     */
     private static int[] loadPPM(InputStream is, int width, int height, int maxVal) throws IOException {
         int[] data = new int[width*height*3];
         for (int i = 0; i < data.length; i++)
@@ -85,10 +142,24 @@ public class Utilities {
         return data;
     }
 
+    /**
+     * Скалира стойност на пиксел към диапазон 255.
+     *
+     * @param value стойността на пиксела
+     * @param maxVal максималната стойност
+     * @return скалираната стойност
+     */
     private static int scale(int value, int maxVal) {
         return (value * 255) / maxVal;
     }
 
+    /**
+     * Прочита следващ token от входния поток.
+     *
+     * @param is входният поток
+     * @return прочетеният token
+     * @throws IOException при грешка при четене
+     */
     private static String readToken(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         int c;
@@ -107,8 +178,16 @@ public class Utilities {
         return sb.toString();
     }
 
+    /**
+     * Съдържа всички налични трансформации.
+     */
     public static final Map<String, Transformation> transformations = createTransformations();
 
+    /**
+     * Създава map с поддържаните трансформации.
+     *
+     * @return map с трансформации
+     */
     private static Map<String, Transformation> createTransformations() {
         Map<String, Transformation> map = new HashMap<>();
         map.put("grayscale", new GrayscaleCommand());
@@ -119,6 +198,13 @@ public class Utilities {
         return map;
     }
 
+    /**
+     * Прилага всички трансформации върху изображение.
+     *
+     * @param image изображението за обработка
+     * @param pending списък с трансформации
+     * @return трансформираното изображение
+     */
     public static Image applyTransformations(Image image, List<String> pending) {
         for (String name : pending) {
             Transformation t = transformations.get(name.toLowerCase());
@@ -128,6 +214,13 @@ public class Utilities {
         return image;
     }
 
+    /**
+     * Записва изображение във файл.
+     *
+     * @param image изображението за запис
+     * @param fileName пътят до изходния файл
+     * @throws IOException при грешка при запис
+     */
     public static void saveImage(Image image, String fileName) throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             String magic;

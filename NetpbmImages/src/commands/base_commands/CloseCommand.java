@@ -2,8 +2,13 @@ package commands.base_commands;
 
 import commands.Command;
 import models.session.SessionManager;
-
+/**
+ * Затваря текущо отворената сесия.
+ */
 public class CloseCommand implements Command {
+    /**
+     * Затваря текущата сесия.
+     */
     @Override
     public String execute() {
         if (!SessionManager.hasSession()) {

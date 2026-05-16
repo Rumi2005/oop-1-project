@@ -6,8 +6,14 @@ import models.session.Session;
 import models.session.SessionManager;
 
 import java.util.List;
-
+/**
+ * Преобразува изображението в черно-бял режим.
+ * Използва само два цветови тона.
+ */
 public class MonochromeCommand implements Command, Transformation {
+    /**
+     * Извършва преобразуването.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();
@@ -24,6 +30,10 @@ public class MonochromeCommand implements Command, Transformation {
         return "";
     }
 
+    /**
+     * Преобразува изображението в черно-бяло.
+     * @param image е подаденото изображение.
+     */
     @Override
     public Image transform(Image image) {
         if (image.isMonochrome())

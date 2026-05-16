@@ -12,12 +12,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Function;
-
+/**
+ * Управлява командния интерфейс на приложението.
+ * Обработва въведените команди от потребителя.
+ */
 public class AppCLI {
+    /**
+     * Използва се за четене на вход от конзолата.
+     */
     private final Scanner scanner = new Scanner(System.in);
-    private final
-    Map<String, Function<String[], Command>> commands = createCommands();
 
+    /**
+     * Съхранява всички налични команди и тяхното създаване.
+     */
+    private final Map<String, Function<String[], Command>> commands = createCommands();
+
+    /**
+     * Стартира командния интерфейс на приложението.
+     * Обработва потребителски команди в безкраен цикъл.
+     */
     public void start() {
         System.out.println("NetPBM Image Editor");
         System.out.println("Type 'help' " + "for commands.");
@@ -46,6 +59,11 @@ public class AppCLI {
         }
     }
 
+    /**
+     * Създава и регистрира всички налични команди.
+     *
+     * @return map с команди и техните фабрики
+     */
     private Map<String, Function<String[], Command>> createCommands() {
         Map<String, Function<String[], Command>> map = new HashMap<>();
         map.put("load", parts -> {requireLength(parts, 2, "load <path>");
@@ -71,12 +89,26 @@ public class AppCLI {
         map.put("help", parts -> new HelpCommand());
         return map;
     }
+
+    /**
+     * Извлича ключа на командата от входните аргументи.
+     *
+     * @param parts разделените части на командата
+     * @return ключът на командата
+     */
     private String getCommandKey(String[] parts) {
         if (parts.length >= 2 && parts[0].equalsIgnoreCase("session") && parts[1].equalsIgnoreCase("info"))
             return "session info";
         return parts[0].toLowerCase();
     }
 
+    /**
+     * Проверява дали броят на аргументите е валиден.
+     *
+     * @param parts въведените аргументи
+     * @param minLength очакваният минимален брой аргументи
+     * @param usage пример за правилна употреба
+     */
     private void requireLength(String[] parts, int minLength, String usage) {
         if (parts.length < minLength)
             throw new IllegalArgumentException(usage);

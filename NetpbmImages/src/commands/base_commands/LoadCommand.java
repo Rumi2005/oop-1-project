@@ -7,14 +7,28 @@ import models.session.Session;
 import models.session.SessionManager;
 
 import java.io.*;
-
+/**
+ * Отваря изображение от подаден файл.
+ * Зарежда изображението в приложението.
+ */
 public class LoadCommand implements Command {
+    /**
+     * Съхранява пътя до файла.
+     */
     private String path;
 
+    /**
+     * Създава команда за отваряне на файл.
+     *
+     * @param path път до изображението
+     */
     public LoadCommand(String path) {
         this.path = path;
     }
 
+    /**
+     * Зарежда изображението от файл. Стартира нова сесия.
+     */
     @Override
     public String execute() {
         try {

@@ -8,13 +8,28 @@ import models.session.SessionManager;
 
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Записва изображението в нов файл.
+ * Позволява избор на ново име.
+ */
 public class SaveAsCommand implements Command {
+    /**
+     * Съхранява новия път до файла.
+     */
     private final String newFileName;
+
+    /**
+     * Създава команда за запис в нов файл.
+     *
+     * @param newFileName нов път за запис
+     */
     public SaveAsCommand(String newFileName) {
         this.newFileName = newFileName;
     }
 
+    /**
+     * Записва файла на ново място.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();

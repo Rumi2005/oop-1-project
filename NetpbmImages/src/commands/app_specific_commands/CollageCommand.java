@@ -7,12 +7,36 @@ import models.session.SessionManager;
 
 import java.util.List;
 
+/**
+ * Създава колаж от две изображения.
+ * Поддържа хоризонтално или вертикално обединяване.
+ */
 public class CollageCommand implements Command {
+    /**
+     * Посоката на създаване на колажа.
+     */
     private final String direction;
+    /**
+     * Името на първото изображение.
+     */
     private final String firstImage;
+    /**
+     * Името на второто изображение.
+     */
     private final String secondImage;
+    /**
+     * Името на резултатното изображение.
+     */
     private final String outputImage;
 
+    /**
+     * Създава команда за колаж на две изображения.
+     *
+     * @param direction посока на колажа
+     * @param firstImage първо изображение
+     * @param secondImage второ изображение
+     * @param outputImage име на резултатното изображение
+     */
     public CollageCommand(String direction, String firstImage, String secondImage, String outputImage) {
         this.direction = direction.toLowerCase();
         this.firstImage = firstImage;
@@ -20,6 +44,11 @@ public class CollageCommand implements Command {
         this.outputImage = outputImage;
     }
 
+    /**
+     * Създава колаж от избраните изображения.
+     *
+     * @return резултат от изпълнението на командата
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();
@@ -42,6 +71,13 @@ public class CollageCommand implements Command {
         return "New collage: '" + outputImage + "' created";
     }
 
+    /**
+     * Създава колаж от две изображения.
+     *
+     * @param image1 първото изображение
+     * @param image2 второто изображение
+     * @return новото изображение след обединяване
+     */
     private Image createCollage(Image image1, Image image2) {
         int width = image1.getWidth();
         int height = image1.getHeight();
@@ -62,6 +98,18 @@ public class CollageCommand implements Command {
         return result;
     }
 
+    /**
+     * Копира пикселни данни от изходно изображение в целево изображение.
+     *
+     * @param source масивът с пикселни данни на изходното изображение
+     * @param target масивът с пикселни данни на целевото изображение
+     * @param width ширината на изходното изображение
+     * @param height височината на изходното изображение
+     * @param targetWidth ширината на целевото изображение
+     * @param channels броят цветови канали на изображението
+     * @param offsetX хоризонталното отместване при копиране
+     * @param offsetY вертикалното отместване при копиране
+     */
     private void copyImage(int[] source, int[] target, int width, int height, int targetWidth, int channels, int offsetX, int offsetY) {
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {

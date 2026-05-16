@@ -6,7 +6,14 @@ import models.session.SessionManager;
 
 import java.util.List;
 
+/**
+ * Показва информация за текущата сесия.
+ * Извежда заредените изображения и операции.
+ */
 public class SessionInfoCommand implements Command {
+    /**
+     * Извежда информация за активната сесия.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();

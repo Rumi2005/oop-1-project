@@ -7,8 +7,14 @@ import models.session.Session;
 import models.session.SessionManager;
 
 import java.util.List;
-
+/**
+ * Преобразува изображението в сива скала.
+ * Премахва цветовата информация.
+ */
 public class GrayscaleCommand implements Command,Transformation {
+    /**
+     * Извършва преобразуването.
+     */
     @Override
     public String execute() {
         Session session = SessionManager.getCurrentSession();
@@ -26,6 +32,10 @@ public class GrayscaleCommand implements Command,Transformation {
         return "";
     }
 
+    /**
+     * Преобразува изображението в сива скала.
+     * @param image е подаденото изображение.
+     */
     @Override
     public Image transform(Image image) {
         if (!image.isColored()) {

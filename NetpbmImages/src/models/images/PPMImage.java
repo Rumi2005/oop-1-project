@@ -2,26 +2,53 @@ package models.images;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Представя изображение в PPM формат.
+ * Използва RGB цветови стойности.
+ */
 public class PPMImage extends Image {
+    /**
+     * Създава PPM изображение.
+     */
     public PPMImage(){
         this.imageType = BufferedImage.TYPE_INT_RGB;
     }
 
+    /**
+     * Създава празно PPM изображение.
+     *
+     * @return ново празно изображение
+     */
     @Override
     public Image createEmpty() {
         return new PPMImage();
     }
 
+    /**
+     * Връща броя цветови канали.
+     *
+     * @return броят канали
+     */
     @Override
     public int getChannels() {
         return 3;
     }
 
+    /**
+     * Проверява дали изображението е цветно.
+     *
+     * @return true, защото PPM е цветно
+     */
     @Override
     public boolean isColored() {
         return true;
     }
 
+    /**
+     * Проверява дали изображението е monochrome.
+     *
+     * @return false, защото PPM не е monochrome
+     */
     @Override
     public boolean isMonochrome() {
         int[] data = getData();
