@@ -3,11 +3,11 @@ package commands.base_commands;
 import commands.Command;
 /**
  * Показва информация за наличните команди.
- * Използва се за помощ при работа с приложението.
+ * използва се за помощ при работа с приложението.
  */
 public class HelpCommand implements Command {
     /**
-     * Извежда списък с поддържаните команди.
+     * извежда списък с поддържаните команди.
      */
     @Override
     public String execute() {

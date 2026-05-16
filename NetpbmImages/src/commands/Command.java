@@ -5,7 +5,7 @@ package commands;
  */
 public interface Command {
     /**
-     * Изпълнява логиката на командата.
+     * изпълнява логиката на командата.
      */
     String execute();
 }

@@ -3,7 +3,7 @@ package commands.base_commands;
 import commands.Command;
 /**
  * Прекратява изпълнението на приложението.
- * Използва се за изход от програмата.
+ * използва се за изход от програмата.
  */
 public class ExitCommand implements Command {
     /**

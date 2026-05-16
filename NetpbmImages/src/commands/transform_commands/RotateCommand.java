@@ -35,7 +35,7 @@ public class RotateCommand implements Command, Transformation {
     }
 
     /**
-     * Извършва завъртане на изображението.
+     * извършва завъртане на изображението.
      */
     @Override
     public String execute() {

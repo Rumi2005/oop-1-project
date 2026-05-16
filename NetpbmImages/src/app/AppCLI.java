@@ -18,7 +18,7 @@ import java.util.function.Function;
  */
 public class AppCLI {
     /**
-     * Използва се за четене на вход от конзолата.
+     * използва се за четене на вход от конзолата.
      */
     private final Scanner scanner = new Scanner(System.in);
 
@@ -61,7 +61,6 @@ public class AppCLI {
 
     /**
      * Създава и регистрира всички налични команди.
-     *
      * @return map с команди и техните фабрики
      */
     private Map<String, Function<String[], Command>> createCommands() {
@@ -91,8 +90,7 @@ public class AppCLI {
     }
 
     /**
-     * Извлича ключа на командата от входните аргументи.
-     *
+     * извлича ключа на командата от входните аргументи.
      * @param parts разделените части на командата
      * @return ключът на командата
      */

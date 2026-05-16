@@ -8,11 +8,11 @@ import models.session.SessionManager;
 import java.util.List;
 /**
  * Преобразува изображението в черно-бял режим.
- * Използва само два цветови тона.
+ * използва само два цветови тона.
  */
 public class MonochromeCommand implements Command, Transformation {
     /**
-     * Извършва преобразуването.
+     * извършва преобразуването.
      */
     @Override
     public String execute() {

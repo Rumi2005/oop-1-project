@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Представя изображение в PBM формат.
- * Използва monochrome пикселни стойности.
+ * използва monochrome пикселни стойности.
  */
 public class PBMImage extends Image {
     /**

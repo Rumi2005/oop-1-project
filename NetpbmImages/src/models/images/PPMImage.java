@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Представя изображение в PPM формат.
- * Използва RGB цветови стойности.
+ * използва RGB цветови стойности.
  */
 public class PPMImage extends Image {
     /**

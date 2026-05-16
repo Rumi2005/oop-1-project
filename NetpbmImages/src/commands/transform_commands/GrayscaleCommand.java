@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class GrayscaleCommand implements Command,Transformation {
     /**
-     * Извършва преобразуването.
+     * извършва преобразуването.
      */
     @Override
     public String execute() {

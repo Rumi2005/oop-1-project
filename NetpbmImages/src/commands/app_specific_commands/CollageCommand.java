@@ -17,15 +17,15 @@ public class CollageCommand implements Command {
      */
     private final String direction;
     /**
-     * Името на първото изображение.
+     * името на първото изображение.
      */
     private final String firstImage;
     /**
-     * Името на второто изображение.
+     * името на второто изображение.
      */
     private final String secondImage;
     /**
-     * Името на резултатното изображение.
+     * името на резултатното изображение.
      */
     private final String outputImage;
 

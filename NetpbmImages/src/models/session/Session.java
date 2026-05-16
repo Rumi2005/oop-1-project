@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class Session {
     /**
-     * Идентификатор на следващата сесия.
+     * идентификатор на следващата сесия.
      */
     private static int nextId = 1;
     /**
-     * Идентификаторът на сесията.
+     * идентификаторът на сесията.
      */
     private int id;
     /**

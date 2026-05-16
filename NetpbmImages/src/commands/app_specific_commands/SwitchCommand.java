@@ -9,7 +9,7 @@ import models.session.SessionManager;
  */
 public class SwitchCommand implements Command {
     /**
-     * Идентификаторът на желаната сесия.
+     * идентификаторът на желаната сесия.
      */
     private final int id;
 
