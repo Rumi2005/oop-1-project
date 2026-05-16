@@ -163,7 +163,6 @@ NetpbmImages/
 - **Command pattern** — всяка потребителска команда е отделен клас, имплементиращ `Command`. `AppCLI` свързва ключови думи с фабрични ламбди в `Map`, което прави добавянето на нова команда тривиално.
 - **Strategy pattern** — `Transformation` е функционален интерфейс. `Utilities.applyTransformations()` обхожда опашката с чакащи трансформации и делегира към правилната имплементация.
 - **Factory pattern** — `Utilities.imageFactory` свързва NetPBM magic numbers (`P1`/`P2`/`P3`) с конструктори, елиминирайки `if-else` вериги в зареждащата логика.
-- **Lazy evaluation** — трансформациите се съхраняват като низове в `Session.pendingTransformations` и се материализират само при `save`. `undo` просто премахва последния запис.
 
 ---
 
