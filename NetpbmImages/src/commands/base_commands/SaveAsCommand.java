@@ -44,8 +44,9 @@ public class SaveAsCommand implements Command {
                 String target = (i == 0) ? newFileName : fileNames.get(i);
                 Utilities.saveImage(image, target);
             }
+            fileNames.set(0, newFileName);
             pending.clear();
-            return "";
+            return null;
         } catch (IOException e) {
             return "Save failed: " + e.getMessage();
         }

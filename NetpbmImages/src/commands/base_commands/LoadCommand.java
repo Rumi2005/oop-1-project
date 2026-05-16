@@ -60,7 +60,7 @@ public class LoadCommand implements Command {
             magic = "P3";
         else
             throw new IOException("Unsupported file type.");
-        Image image = Utilities.imageFactory.get(magic).get();
+        Image image = Utilities.imageFactory.get(magic);
         image.setWidth(1);
         image.setHeight(1);
         if (!magic.equals("P1"))

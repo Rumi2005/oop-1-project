@@ -26,7 +26,7 @@ public class HelpCommand implements Command {
         help.append(formatCommand("switch <session>", "Switches to another session."));
         help.append(formatCommand("collage <direction> <image1> <image2> <outimage>", "Creates a collage from two images."));
         help.append(formatCommand("save", "Saves all images after applying transformations."));
-        help.append(formatCommand("save as <newName>", "Saves the first image under a new name."));
+        help.append(formatCommand("saveas <newName>", "Saves the first image under a new name."));
         help.append(formatCommand("help", "Displays this help."));
 
         return help.toString();

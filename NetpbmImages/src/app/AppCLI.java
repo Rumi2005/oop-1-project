@@ -83,7 +83,7 @@ public class AppCLI {
         map.put("collage", parts -> {requireLength(parts, 5, "collage <horizontal|vertical> <image1> <image2> <outimage>");
                     return new CollageCommand(parts[1], parts[2], parts[3], parts[4]);});
         map.put("save", parts -> new SaveCommand());
-        map.put("save as", parts -> {requireLength(parts, 2, "save as <newName>");
+        map.put("saveas", parts -> {requireLength(parts, 2, "save as <newName>");
             return new SaveAsCommand(parts[1]);});
         map.put("help", parts -> new HelpCommand());
         return map;

@@ -46,17 +46,17 @@ public class Utilities {
     /**
      * Съдържа фабрики за създаване на изображения.
      */
-    public static final Map<String, Supplier<Image>> imageFactory = createImageFactories();
+    public static final Map<String, Image> imageFactory = createImageFactories();
 
     /**
      * Създава фабрики за различните типове изображения.
      * @return map с image factories
      */
-    private static Map<String, Supplier<Image>> createImageFactories() {
-        Map<String, Supplier<Image>> map = new HashMap<>();
-        map.put("P1", PBMImage::new);
-        map.put("P2", PGMImage::new);
-        map.put("P3", PPMImage::new);
+    private static Map<String, Image> createImageFactories() {
+        Map<String, Image> map = new HashMap<>();
+        map.put("P1", new PBMImage());
+        map.put("P2", new PGMImage());
+        map.put("P3", new PPMImage());
         return map;
     }
 
@@ -70,10 +70,9 @@ public class Utilities {
     public static Image load(String path) throws IOException {
         try (InputStream is = new BufferedInputStream(Files.newInputStream(Paths.get(path)))) {
             String magic = readToken(is);
-            Supplier<Image> factory = Utilities.imageFactory.get(magic);
-            if (factory == null)
+            Image image = Utilities.imageFactory.get(magic);
+            if (image == null)
                 throw new IOException("Unsupported format: " + magic);
-            Image image = factory.get();
             int width = Integer.parseInt(readToken(is));
             int height = Integer.parseInt(readToken(is));
             image.setWidth(width);
