@@ -22,7 +22,7 @@ public class NegativeCommand implements Command, Transformation {
         }
         List<Image> images = session.getImages();
         images.replaceAll(this::transform);
-        session.addTransformation("monochrome");
+        session.addTransformation("negative");
         return "";
     }
 
